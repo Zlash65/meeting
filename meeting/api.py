@@ -1,5 +1,6 @@
 import frappe
 from frappe import _
+from frappe.utils import nowdate, add_days
 
 @frappe.whitelist()
 def send_invitation_emails(meeting):
@@ -41,3 +42,23 @@ def get_meetings(start, end):
 		"start": start,
 		"end": end 
 	}, as_dict=True)
+
+@frappe.whitelist()
+def make_orientation_meeting(doc, method):
+	""" Create an Orientation meeting when  a new User is added """
+	meeting = frappe.get_doc({
+		"doctype": "Meeting",
+		"title": "Orientation for {0}".format(doc.first_name),
+		"date": add_days(nowdate(), 1),
+		"from_time": "09:00",
+		"to_time": "09:30",
+		"status": "Planned",
+		"agenda": [{
+			"description": "Briefing about Complany"
+		}],
+		"attendees": [{
+			"attendee": doc.name
+		}]
+	})
+	meeting.flags.ignore_permissions = True
+	meeting.save()
