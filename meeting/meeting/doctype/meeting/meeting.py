@@ -12,7 +12,7 @@ class Meeting(Document):
 		""" Set missing names and avoid duplication """
 		for attendee in self.attendees:
 			if not attendee.full_name:
-				attendee.full_name = get_full_name(attendee.attendee)	
+				attendee.full_name = get_full_name(attendee.attendee)
 
 @frappe.whitelist()
 def get_full_name(attendee):
