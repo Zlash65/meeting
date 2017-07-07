@@ -4,11 +4,11 @@ from . import __version__ as app_version
 
 app_name = "meeting"
 app_title = "Meeting"
-app_publisher = "frappe"
+app_publisher = "Zlash65"
 app_description = "Set up Meetings and stuff"
 app_icon = "octicon octicon-file-directory"
 app_color = "grey"
-app_email = "frappe@testmail.com"
+app_email = "zarrar65@gmail.com"
 app_license = "MIT"
 
 # Includes in <head>
