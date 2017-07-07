@@ -34,7 +34,8 @@ def get_meetings(start, end):
 		timestamp(date, to_time) as end,
 		name,
 		title,
-		status
+		status,
+		0 as all_day
 	from `tabMeeting`
 	where `date` between %(start)s and %(end)s""",{
 		"start": start,
