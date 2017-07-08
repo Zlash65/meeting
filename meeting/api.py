@@ -4,6 +4,7 @@ from frappe.utils import nowdate, add_days
 
 @frappe.whitelist()
 def send_invitation_emails(meeting):
+	""" Send an invitation email whenever the 'send email' button is clicked in the form """
 	meeting = frappe.get_doc("Meeting", meeting)
 	meeting.check_permission("email")
 
@@ -27,6 +28,7 @@ def send_invitation_emails(meeting):
 
 @frappe.whitelist()
 def get_meetings(start, end):
+	""" To fetch details of the meeting and display it in the Calendar View """
 	if not frappe.has_permission("Meeting", "read"):
 		raise frappe.PermisisonError
 
@@ -45,7 +47,7 @@ def get_meetings(start, end):
 
 @frappe.whitelist()
 def make_orientation_meeting(doc, method):
-	""" Create an Orientation meeting when  a new User is added """
+	""" Create an Orientation meeting when a new User is added """
 	meeting = frappe.get_doc({
 		"doctype": "Meeting",
 		"title": "Orientation for {0}".format(doc.first_name),
@@ -54,7 +56,7 @@ def make_orientation_meeting(doc, method):
 		"to_time": "09:30",
 		"status": "Planned",
 		"agenda": [{
-			"description": "Briefing about Complany"
+			"description": "Briefing about Complany "
 		}],
 		"attendees": [{
 			"attendee": doc.name

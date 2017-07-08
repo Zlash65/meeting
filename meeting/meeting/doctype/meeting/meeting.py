@@ -16,6 +16,7 @@ class Meeting(Document):
 
 @frappe.whitelist()
 def get_full_name(attendee):
+	""" Fetch the full name of the User from 'User Doctype' """
 	user =  frappe.get_doc("User", attendee)
 	# Filter and add First name / Last name
 	return " ".join(filter(None, [user.first_name, user.middle_name, user.last_name]))
