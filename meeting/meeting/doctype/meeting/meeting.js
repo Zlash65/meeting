@@ -33,7 +33,6 @@ frappe.ui.form.on("Meeting", {
 frappe.ui.form.on('Meeting Attendee', {
 	attendee: function(frm, cdt, cdn) {
 		var attendee = frappe.model.get_doc(cdt, cdn);
-		
 		if(attendeeList.includes(attendee.attendee)){
 			x = attendeeList.length;
 			cur_frm.get_field("attendees").grid.grid_rows[x].remove();
